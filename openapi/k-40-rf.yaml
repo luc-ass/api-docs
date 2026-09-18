@@ -512,7 +512,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 120
-                unitOfMeasure: mins
+                unitOfMeasure: min
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -747,7 +747,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 24.4
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                     short: 32768
@@ -804,7 +804,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 23
-                unitOfMeasure: C
+                unitOfMeasure: °C
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -831,7 +831,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 24.4
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32768
@@ -861,7 +861,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 54.1
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32768
@@ -1505,7 +1505,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: -3276.8
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -1535,7 +1535,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 43.5
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -1565,7 +1565,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 43.5
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -1714,7 +1714,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 55
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -1775,7 +1775,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 30
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -1812,7 +1812,7 @@ paths:
                     type: yRecordingExtended
                     writeable: 0
                     recordingType: actual
-                    unitOfMeasure: C
+                    unitOfMeasure: °C
                     recordedResource:
                       id: /heatSources/actualSupplyTemperature
                       uri: http://192.0.2.10/heatSources/actualSupplyTemperature
@@ -4124,7 +4124,7 @@ paths:
                     type: yRecordingExtended
                     writeable: 0
                     recordingType: actual
-                    unitOfMeasure: C
+                    unitOfMeasure: °C
                     recordedResource:
                       id: /system/sensors/temperatures/outdoor_t1
                       uri: http://192.0.2.10/system/sensors/temperatures/outdoor_t1
@@ -4262,7 +4262,7 @@ paths:
                 type: integerValue
                 writeable: 0
                 value: 25
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - OFF_COOL: 90
                   - OFF_HEAT: 0
@@ -5274,7 +5274,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 30
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                     short: 32767
@@ -5401,7 +5401,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 21
-                unitOfMeasure: C
+                unitOfMeasure: °C
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -6072,7 +6072,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 18
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - 'off': 0
         '401':
@@ -6366,7 +6366,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 25.8
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - overflow: -32767
                   - underflow: -32766
@@ -6426,7 +6426,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: -80
-                unitOfMeasure: db
+                unitOfMeasure: dB
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -6616,7 +6616,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 55
-                unitOfMeasure: C
+                unitOfMeasure: °C
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -6674,7 +6674,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 55
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -6706,7 +6706,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 55
-                unitOfMeasure: mins
+                unitOfMeasure: min
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -6735,7 +6735,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 10
-                unitOfMeasure: C
+                unitOfMeasure: °C
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -6797,7 +6797,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 50
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7014,7 +7014,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 480
-                unitOfMeasure: mins
+                unitOfMeasure: min
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -7043,7 +7043,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 21
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - 'off': 0
         '401':
@@ -7113,7 +7113,7 @@ paths:
                 type: floatValue
                 writeable: 1
                 value: 48
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 minValue: 30
                 maxValue: 60
         '401':
@@ -7292,7 +7292,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 20
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7487,7 +7487,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 55
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7548,7 +7548,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 44
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7580,7 +7580,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 44
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7612,7 +7612,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 44
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7644,7 +7644,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 44
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7676,7 +7676,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 55
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7708,7 +7708,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 55
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7740,7 +7740,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: -3276.8
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7801,7 +7801,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 45
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -7902,7 +7902,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 44
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32768
@@ -7934,7 +7934,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 44
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32768
@@ -8188,7 +8188,7 @@ paths:
                     type: yRecordingExtended
                     writeable: 0
                     recordingType: actual
-                    unitOfMeasure: C
+                    unitOfMeasure: °C
                     recordedResource:
                       id: /dhwCircuits/dhw1/actualTemp
                       uri: http://192.0.2.10/dhwCircuits/dhw1/actualTemp
@@ -8257,7 +8257,7 @@ paths:
                     type: yRecordingExtended
                     writeable: 0
                     recordingType: actual
-                    unitOfMeasure: C
+                    unitOfMeasure: °C
                     recordedResource:
                       id: /heatingCircuits/hc1/roomtemperature
                       uri: http://192.0.2.10/heatingCircuits/hc1/roomtemperature
@@ -9148,7 +9148,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 43.5
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -9180,7 +9180,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 43.5
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768
                   - short: 32767
@@ -9241,7 +9241,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 6960.5
-                unitOfMeasure: wh
+                unitOfMeasure: Wh
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9302,7 +9302,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 30
-                unitOfMeasure: mins
+                unitOfMeasure: min
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9453,7 +9453,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 100
-                unitOfMeasure: 1/min
+                unitOfMeasure: rpm
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9482,7 +9482,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 10
-                unitOfMeasure: mins
+                unitOfMeasure: min
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9573,7 +9573,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 19.4
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768.0
                   - short: 32767.0
@@ -9663,7 +9663,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 23.0
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768.0
                   - short: 32767.0
@@ -9757,7 +9757,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 15.7
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768.0
                   - short: 32767.0
@@ -9818,7 +9818,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 17.6
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - open: -32768.0
                   - short: 32767.0
@@ -9940,7 +9940,7 @@ paths:
                 writeable: 0
                 type: floatValue
                 value: 25.8
-                unitOfMeasure: C
+                unitOfMeasure: °C
                 state:
                   - overflow: -32767
                   - underflow: -32766
@@ -10009,7 +10009,7 @@ paths:
                   type: floatValue
                   writeable: 1
                   value: 21.5
-                  unitOfMeasure: C
+                  unitOfMeasure: °C
                   minValue: 5
                   maxValue: 30
         '401':
@@ -10040,7 +10040,7 @@ paths:
                   type: floatValue
                   writeable: 1
                   value: 21.5
-                  unitOfMeasure: C
+                  unitOfMeasure: °C
                   minValue: 5
                   maxValue: 30
         '401':
@@ -10110,7 +10110,7 @@ paths:
                   type: floatValue
                   writeable: 0
                   value: 10
-                  unitOfMeasure: C
+                  unitOfMeasure: °C
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -10139,7 +10139,7 @@ paths:
                   type: floatValue
                   writeable: 1
                   value: 21.5
-                  unitOfMeasure: C
+                  unitOfMeasure: °C
                   minValue: 5
                   maxValue: 30
         '401':
@@ -10209,7 +10209,7 @@ paths:
                   type: floatValue
                   writeable: 1
                   value: 21.5
-                  unitOfMeasure: C
+                  unitOfMeasure: °C
                   minValue: 5
                   maxValue: 30
                   state:
