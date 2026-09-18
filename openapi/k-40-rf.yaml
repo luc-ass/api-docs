@@ -590,11 +590,11 @@ paths:
                 id: /gateway/wifi/pairingStatus
                 type: stringValue
                 writeable: 0
-                value: false
+                value: 'OFF'
                 allowedValues:
-                  - false
-                  - hotspot
-                  - wps
+                  - 'OFF'
+                  - WPS
+                  - HOTSPOT
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1105,7 +1105,7 @@ paths:
                   - notConnected
                   - inactive
                   - activeCh
-                  - activeDHW
+                  - activeDhw
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -7130,7 +7130,8 @@ paths:
                 values:
                   - ch: 139
                   - dhw: 30
-                  - total: 30
+                  - cooling: 12
+                  - total: 181
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -7229,6 +7230,10 @@ paths:
                   - shutoff
                   - alarm
                   - test_mode
+                  - 'off'
+                  - dhw
+                  - pool
+                  - pool_heat
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -7631,12 +7636,13 @@ paths:
                 id: /heatSources/hs1/workingTime
                 type: emonValue
                 writeable: 0
+                unit: s
                 values:
                   - ch: 139
                   - dhw: 30
                   - pool: 10
                   - cooling: 10
-                  - total: 30
+                  - total: 189
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9278,6 +9284,8 @@ paths:
                 writeable: 0
                 value: 100
                 unitOfMeasure: ppm
+                state:
+                  - invalid: 65535.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9307,6 +9315,8 @@ paths:
                 writeable: 0
                 value: 100
                 unitOfMeasure: '%'
+                state:
+                  - invalid: 255.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9334,8 +9344,11 @@ paths:
                 id: /ventilation/zone1/sensors/exhaustTemp
                 type: floatValue
                 writeable: 0
-                value: -32768
+                value: 19.4
                 unitOfMeasure: C
+                state:
+                  - open: -32768.0
+                  - short: 32767.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9421,8 +9434,11 @@ paths:
                 id: /ventilation/zone1/sensors/extractTemp
                 type: floatValue
                 writeable: 0
-                value: -32768
+                value: 23.0
                 unitOfMeasure: C
+                state:
+                  - open: -32768.0
+                  - short: 32767.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9452,6 +9468,8 @@ paths:
                 writeable: 0
                 value: 10
                 unitOfMeasure: ppm
+                state:
+                  - invalid: 65535.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9481,6 +9499,8 @@ paths:
                 writeable: 0
                 value: 50
                 unitOfMeasure: '%'
+                state:
+                  - invalid: 255.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9508,8 +9528,11 @@ paths:
                 id: /ventilation/zone1/sensors/outdoorTemp
                 type: floatValue
                 writeable: 0
-                value: -32768
+                value: 15.7
                 unitOfMeasure: C
+                state:
+                  - open: -32768.0
+                  - short: 32767.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9538,7 +9561,7 @@ paths:
                 type: floatValue
                 writeable: 0
                 value: 200
-                unitOfMeasure: rpm"
+                unitOfMeasure: rpm
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9566,8 +9589,11 @@ paths:
                 id: /ventilation/zone1/sensors/supplyTemp
                 type: floatValue
                 writeable: 0
-                value: -32768
+                value: 17.6
                 unitOfMeasure: C
+                state:
+                  - open: -32768.0
+                  - short: 32767.0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -10120,6 +10146,12 @@ components:
             state:
               type: array
               readOnly: true
+              description: >-
+                Sentinel readings that report a fault instead of a measurement.
+                Each entry names one condition and the exact value the resource
+                carries while it holds, for example `open: -32768.0` for a
+                disconnected sensor. A client has to compare `value` against
+                these and treat a match as unknown rather than as a reading.
               items:
                 type: object
                 additionalProperties:
@@ -10263,6 +10295,12 @@ components:
             state:
               type: array
               readOnly: true
+              description: >-
+                Sentinel readings that report a fault instead of a measurement.
+                Each entry names one condition and the exact value the resource
+                carries while it holds, for example `open: -32768.0` for a
+                disconnected sensor. A client has to compare `value` against
+                these and treat a match as unknown rather than as a reading.
               items:
                 type: object
                 additionalProperties:
