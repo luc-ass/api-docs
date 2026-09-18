@@ -1128,6 +1128,21 @@ paths:
                 allOf:
                   - $ref: '#/components/schemas/StringValue'
                   - $ref: '#/components/schemas/ReadableResource'
+                  - type: object
+                    properties:
+                      value:
+                        enum:
+                          - notConnected
+                          - inactive
+                          - activeCh
+                          - activeDhw
+                      allowedValues:
+                        items:
+                          enum:
+                          - notConnected
+                          - inactive
+                          - activeCh
+                          - activeDhw
               example:
                 id: /heatSources/emStatus
                 type: stringValue
@@ -1331,6 +1346,17 @@ paths:
                 allOf:
                   - $ref: '#/components/schemas/BinaryStringValue'
                   - $ref: '#/components/schemas/ReadableResource'
+                  - type: object
+                    properties:
+                      value:
+                        enum:
+                          - 'off'
+                          - 'on'
+                      allowedValues:
+                        items:
+                          enum:
+                          - 'off'
+                          - 'on'
               example:
                 id: /heatSources/flameStatus
                 type: stringValue
