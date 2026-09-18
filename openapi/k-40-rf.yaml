@@ -630,6 +630,38 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+  /heatSources:
+    get:
+      operationId: getHeatSources
+      description: >-
+        PROPOSAL. Get the heat generators this installation has. A client currently has
+        to call every declared path below this branch and read the 404s to find
+        that out, which is over 200 requests at startup for a house that has
+        four of them. Same shape as `/signals`, which already answers this way.
+      tags:
+        - heatSources
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/RefEnum'
+                  - $ref: '#/components/schemas/ReadableResource'
+              example:
+                id: /heatSources
+                type: refEnum
+                writeable: 0
+                references:
+                  - id: /heatSources/hs1
+                    uri: http://192.0.2.10/heatSources/hs1
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /heatSources/actualHeatDemand:
     get:
       operationId: getHeatSourcesActualHeatDemand
@@ -5719,6 +5751,40 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+  /zones:
+    get:
+      operationId: getZones
+      description: >-
+        PROPOSAL. Get the zones this installation has. A client currently has
+        to call every declared path below this branch and read the 404s to find
+        that out, which is over 200 requests at startup for a house that has
+        four of them. Same shape as `/signals`, which already answers this way.
+      tags:
+        - zones
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/RefEnum'
+                  - $ref: '#/components/schemas/ReadableResource'
+              example:
+                id: /zones
+                type: refEnum
+                writeable: 0
+                references:
+                  - id: /zones/zone1
+                    uri: http://192.0.2.10/zones/zone1
+                  - id: /zones/zone2
+                    uri: http://192.0.2.10/zones/zone2
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /zones/configuration:
     get:
       operationId: getZoneConfiguration
@@ -6432,6 +6498,38 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+  /dhwCircuits:
+    get:
+      operationId: getDhwCircuits
+      description: >-
+        PROPOSAL. Get the hot water circuits this installation has. A client currently has
+        to call every declared path below this branch and read the 404s to find
+        that out, which is over 200 requests at startup for a house that has
+        four of them. Same shape as `/signals`, which already answers this way.
+      tags:
+        - dhwCircuits
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/RefEnum'
+                  - $ref: '#/components/schemas/ReadableResource'
+              example:
+                id: /dhwCircuits
+                type: refEnum
+                writeable: 0
+                references:
+                  - id: /dhwCircuits/dhw1
+                    uri: http://192.0.2.10/dhwCircuits/dhw1
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /dhwCircuits/{dhwCircuitId}/currentFriwaSupplyTemperature:
     parameters:
       - $ref: '#/components/parameters/DhwCircuitIdParameter'
@@ -6759,6 +6857,40 @@ paths:
                 state:
                   - open: -32768
                   - short: 32767
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /heatingCircuits:
+    get:
+      operationId: getHeatingCircuits
+      description: >-
+        PROPOSAL. Get the heating circuits this installation has. A client currently has
+        to call every declared path below this branch and read the 404s to find
+        that out, which is over 200 requests at startup for a house that has
+        four of them. Same shape as `/signals`, which already answers this way.
+      tags:
+        - heatingCircuits
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/RefEnum'
+                  - $ref: '#/components/schemas/ReadableResource'
+              example:
+                id: /heatingCircuits
+                type: refEnum
+                writeable: 0
+                references:
+                  - id: /heatingCircuits/hc1
+                    uri: http://192.0.2.10/heatingCircuits/hc1
+                  - id: /heatingCircuits/hc2
+                    uri: http://192.0.2.10/heatingCircuits/hc2
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -9046,6 +9178,38 @@ paths:
                 writeable: 0
                 value: 6960.5
                 unitOfMeasure: wh
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /ventilation:
+    get:
+      operationId: getVentilationZones
+      description: >-
+        PROPOSAL. Get the ventilation zones this installation has. A client currently has
+        to call every declared path below this branch and read the 404s to find
+        that out, which is over 200 requests at startup for a house that has
+        four of them. Same shape as `/signals`, which already answers this way.
+      tags:
+        - ventilation
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/RefEnum'
+                  - $ref: '#/components/schemas/ReadableResource'
+              example:
+                id: /ventilation
+                type: refEnum
+                writeable: 0
+                references:
+                  - id: /ventilation/zone1
+                    uri: http://192.0.2.10/ventilation/zone1
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
