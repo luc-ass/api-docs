@@ -4168,7 +4168,28 @@ paths:
   /signals:
     get:
       operationId: getSignals
-      description: Get the list of available signals.
+      description: >-
+        Get the list of available signals.
+
+        PROPOSAL, from one appliance: this branch carries far more than the
+        description suggests, and a client has to reverse-engineer all of it.
+        Writing down what is already true would be enough.
+
+        The ids are structured, not opaque: `<domain>.<group>[.<circuit>].<leaf>`,
+        for example `SRC.CUHP.HP1.CompressorSpeedActual` or `SC.HC1.FlowTempSetp`.
+        Observed domains are SRC (the heat generator), SC (the system
+        controller), VENTILATION and GWEEBUS; the example below shows a fifth,
+        HC1ROOMREMOTESECOND. A circuit segment is the branch id in capitals
+        with its number -- HC1, DHW1, HP1, VENT1 -- which lets a client place a
+        signal on the right circuit. Knowing that is the difference between a
+        readable name and a raw identifier.
+
+        The signals are real measurements with units and enumerations, not
+        debug output: compressor speed, valve positions, defrost state, frost
+        protection. One appliance served 87 of them.
+
+        Note the second meaning of `state` under this branch: see
+        `/signals/{signalId}`.
       tags:
         - signals
       responses:
@@ -4204,7 +4225,24 @@ paths:
   /signals/{signalId}:
     get:
       operationId: getSignal
-      description: Get a signal by its ID. Available signal IDs are discovered dynamically through GET /signals and depend on the connected system.
+      description: >-
+        Get a signal by its ID. Available signal IDs are discovered dynamically
+        through GET /signals and depend on the connected system.
+
+        PROPOSAL, from observed behaviour: under this branch `state` is an
+        object, and it means something different from everywhere else. On a
+        normal resource `state` is an array of fault sentinels --
+        `[{open: -32768.0}]`, values that report a broken sensor rather than a
+        measurement. On a signal it is a map from label to raw value:
+
+        `{"id": "/signals/SC.SeasonOpt.Mode", "type": "integerValue",
+        "value": 1, "state": {"IDLE": 2, "COOLING": 3, "HEATING": 1}}`
+
+        The reading is 1, which means HEATING. A client that treats this like
+        the sentinel form reports a bare number and loses the meaning; one that
+        treats sentinels like this form nulls out perfectly good readings. The
+        two are told apart by JSON type alone -- array against object -- which
+        is a lot to ask of a reader who has only ever seen one of them.
       tags:
         - signals
       parameters:
