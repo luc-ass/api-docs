@@ -8,8 +8,10 @@ read, taken or dropped on its own.
 It builds on
 [`k-40-rf-examples-from-a-live-device`](https://github.com/bosch-home-comfort/api-docs/compare/main...luc-ass:api-docs:k-40-rf-examples-from-a-live-device),
 which corrects the places where the current examples disagree with a real
-gateway. Compare against that branch to see only the proposals; compare against
-`main` to see both.
+gateway. [Compare against that branch](https://github.com/luc-ass/api-docs/compare/k-40-rf-examples-from-a-live-device...k-40-rf-proposal-machine-readable)
+to see only the proposals, or [against
+`main`](https://github.com/bosch-home-comfort/api-docs/compare/main...luc-ass:api-docs:k-40-rf-proposal-machine-readable)
+to see both.
 
 ## Where this comes from
 
