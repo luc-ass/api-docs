@@ -11413,8 +11413,21 @@ components:
     Unauthorized:
       description: Authentication is required or the provided credentials are invalid.
     Forbidden:
-      description: The authenticated client is not authorized to perform the request.
+      description: >-
+        The authenticated client is not authorized to perform the request.
+
+        PROPOSAL, from observed behaviour: a gateway also answers 403 for a
+        path it does not implement at all -- anything outside its own resource
+        tree -- rather than 404. The distinction matters to every client: 401
+        means the token is gone and the user has to re-authenticate, while 403
+        says nothing about the token and must not end the session. Reading 403
+        the natural way, as "these credentials were refused", takes a whole
+        integration down over a single unsupported resource. Saying so here
+        would have saved us that.
     NotFound:
-      description: The requested resource could not be found.
+      description: >-
+        The requested resource could not be found. Returned for an id inside a
+        declared branch that this installation does not have -- hs2 on a system
+        with one heat generator.
     InternalServerError:
       description: An unexpected error occurred while processing the request.
