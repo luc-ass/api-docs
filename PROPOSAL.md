@@ -28,7 +28,7 @@ all is the reason this exists.
 | 1 | Collection endpoints | A client cannot ask which circuits exist. It has to call every declared path and count the 404s — over 200 requests at every startup. `/signals` already solves this with a `refEnum`; the same shape for `/heatSources`, `/heatingCircuits` and the rest would replace all of it. |
 | 2 | Enumerations in the schema | This file already does this on **17 paths** — `/system/type` declares its vocabulary as `value.enum` in the schema. **54 paths** carry the same information only as `allowedValues` inside the example, where nothing validates it, and every enum defect found against a live gateway sits in that second group. Demonstrated on two of the 54; the rest is mechanical. |
 | 3 | `403` means "not in the spec" | The gateway answers `403` for paths it does not implement, not `404`. A client that reads `403` the natural way — "credentials rejected" — logs the user out over one unsupported resource. It cost us a broken installation. |
-| 4 | `/signals` has a grammar | The branch is documented as "a list of signals". Its ids are structured, its `state` is an object and means an enumeration rather than the sentinel list `state` means everywhere else, and one appliance serves 87 of them. Any of that written down saves every client from guessing. |
+| 4 | `/signals` has a grammar | The branch is documented as "a list of signals". Its ids are structured; its `state` is an object where everywhere else it is a sentinel list, and that object means an enumeration on a bare signal but a list of codes on one that carries a unit; and the appliance decides how many signals exist — 87 on one, 99 on another, 68 shared. Any of that written down saves every client from guessing. We guessed the `state` distinction wrong ourselves and shipped it. |
 | 5 | One unit per quantity | `1/min` and `rpm` for fan speed, `s` and `mins` for time, `db` for `dB`, `wh` for `Wh`, `C` for `°C`. This one is not a documentation defect — the firmware sends it that way, and the examples reproduce it faithfully. It belongs at the source. |
 
 ## What we are offering
@@ -38,3 +38,10 @@ live gateway's answers and prints every disagreement. It runs against any
 installation. If it would help to have it pointed at other appliances — a
 cascade, a boiler, a solar system — we are collecting those diagnostics anyway
 and will gladly report what they say.
+
+It has now been run against a second appliance, a Buderus-branded Logatherm
+WLW186i-12 owned by someone else, on newer appliance firmware. It produced no
+defect the first device had not already shown: the enum and unit disagreements
+above reproduce on both, which makes them this file's rather than one machine's.
+What it did change is point 4. Its `/signals` branch is a different set — 99
+against 87 — and it is what turned up the second meaning of a `state` map.

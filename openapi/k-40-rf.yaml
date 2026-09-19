@@ -4186,10 +4186,12 @@ paths:
 
         The signals are real measurements with units and enumerations, not
         debug output: compressor speed, valve positions, defrost state, frost
-        protection. One appliance served 87 of them.
+        protection. One appliance served 87 of them, another 99, with 68 in
+        common: the set belongs to the machine behind the gateway rather than
+        to the gateway, so a client cannot know it in advance.
 
-        Note the second meaning of `state` under this branch: see
-        `/signals/{signalId}`.
+        Note that `state` means something else under this branch, and two
+        different things within it: see `/signals/{signalId}`.
       tags:
         - signals
       responses:
@@ -4243,6 +4245,24 @@ paths:
         treats sentinels like this form nulls out perfectly good readings. The
         two are told apart by JSON type alone -- array against object -- which
         is a lot to ask of a reader who has only ever seen one of them.
+
+        The object form itself covers two things, and the unit tells them
+        apart. Where the signal carries a `unitOfMeasure` the map does not
+        classify the reading; it names the codes that arrive *instead of* one:
+
+        `{"id": "/signals/SC.HC1.FlowTempSetp", "type": "integerValue",
+        "value": 0, "unitOfMeasure": "C", "state": {"OFF_COOL": 90,
+        "OFF_HEAT": 0}}`
+
+        That is a flow setpoint in C reporting that the circuit is off, which
+        is what the sentinel array expresses everywhere else. The fault labels
+        appear in this form too -- `NA_OPEN`, `NA_SHORT`, `LOW_FLOW`,
+        `INVALID` -- so a map may hold codes, an enumeration, or both. A client
+        that reads a measurement as an enumeration looks correct while the
+        system is idle, because the value sits on a label, and then reports
+        nothing at all once the circuit asks for 35 C. Of the maps two
+        appliances served, 14 and 17 were enumerations and 13 and 11 were
+        measurements. We got this wrong ourselves and shipped it.
       tags:
         - signals
       parameters:
