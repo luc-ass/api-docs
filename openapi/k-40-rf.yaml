@@ -4197,6 +4197,14 @@ paths:
         s -- while `Timer` beside it counts down to zero; both arrive as the
         same integer with the same unit.
 
+        Three units are not quantities at all. `SC.InstallationDate.Day`,
+        `.Month` and `.Year` arrive with `unitOfMeasure` `day`, `month` and
+        `year` and together are one calendar date -- 1 / 10 / 25, 8 / 7 / 26
+        and 31 / 7 / 26 on three appliances. Read as units, `day` looks like a
+        span of time and the plant appears to have run for one day. Spans
+        arrive as `s` or `mins`; nothing else uses these three. A single
+        `stringValue` in ISO 8601 would leave nothing to misread.
+
         The signals are real measurements with units and enumerations, not
         debug output: compressor speed, valve positions, defrost state, frost
         protection. Three appliances served 87, 99 and 120 of them, with 68
