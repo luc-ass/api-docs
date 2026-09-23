@@ -4263,6 +4263,18 @@ paths:
         nothing at all once the circuit asks for 35 C. Of the maps two
         appliances served, 14 and 17 were enumerations and 13 and 11 were
         measurements. We got this wrong ourselves and shipped it.
+
+        PROPOSAL, a firmware defect rather than a documentation one: with EEBUS
+        commissioned, `/signals/GWEEBUS.CEM.SKI` answers with the raw bytes of
+        the key identifier placed inside a JSON string -- byte 0x96 two
+        characters past the opening quote of `value`. No encoding makes that
+        body valid, so it is not JSON, and every client has to catch it. A
+        client reading the branch in one pass loses all of it over this one
+        field: that is what happened to the installation that reported it,
+        which served 120 signal ids and, until our client learned to skip the
+        field, not one value. Uncommissioned, the same signal is an empty
+        string and decodes fine, which is why it goes unnoticed. The SKI is
+        text by nature -- a hex fingerprint -- and should be sent as one.
       tags:
         - signals
       parameters:

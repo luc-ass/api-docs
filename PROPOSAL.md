@@ -21,7 +21,7 @@ surfaced the points below. None of them is a complaint about the device — the
 local API is a good one, and the fact that a third party could build on it at
 all is the reason this exists.
 
-## The five points
+## The six points
 
 | # | Commit | Problem |
 |---|---|---|
@@ -30,6 +30,7 @@ all is the reason this exists.
 | 3 | `403` means "not in the spec" | The gateway answers `403` for paths it does not implement, not `404`. A client that reads `403` the natural way — "credentials rejected" — logs the user out over one unsupported resource. It cost us a broken installation. |
 | 4 | `/signals` has a grammar | The branch is documented as "a list of signals". Its ids are structured; its `state` is an object where everywhere else it is a sentinel list, and that object means an enumeration on a bare signal but a list of codes on one that carries a unit; and the appliance decides how many signals exist — 87 on one, 99 on another, 68 shared. Any of that written down saves every client from guessing. We guessed the `state` distinction wrong ourselves and shipped it. |
 | 5 | One unit per quantity | `1/min` and `rpm` for fan speed, `s` and `mins` for time, `db` for `dB`, `wh` for `Wh`, `C` for `°C`. This one is not a documentation defect — the firmware sends it that way, and the examples reproduce it faithfully. It belongs at the source. |
+| 6 | One signal is not JSON | With EEBUS commissioned, `/signals/GWEEBUS.CEM.SKI` puts the raw bytes of the key identifier inside a JSON string. No encoding makes that body valid. A client that reads `/signals` in one pass loses the whole branch over this one field — the installation that reported it saw 120 signal ids and not one value. Like point 5 this is the firmware, not the file: sent as hex, the fingerprint would be ordinary text. |
 
 ## What we are offering
 
