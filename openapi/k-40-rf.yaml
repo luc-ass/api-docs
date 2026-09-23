@@ -4241,9 +4241,15 @@ paths:
         Most are not measurements but flags, and they are written as words.
         On all three appliances every `stringValue` signal reads the literal
         `"true"` or `"false"` -- 34 of 34, 47 of 49, 52 of 53 -- except the
-        `GWEEBUS.CEM.*` identity strings. Nothing in the schema says so, so a
-        client either compares strings or keeps its own list. A boolean type,
-        or at least a `format`, would say it once.
+        `GWEEBUS.CEM.*` identity strings. Nothing in the schema says so, and
+        since signal ids differ per appliance, a client cannot know in advance
+        which ones are flags: it either compares strings or keeps its own list.
+
+        Changing the wire format would break every client that compares
+        strings today. Sending `allowedValues: ["false", "true"]` with these
+        signals, as static string enums already do, would not: a client could
+        recognise a flag from its first reading. The file has the same idea
+        for static resources as `BinaryStringValue` (`on`/`off`).
 
         Note that `state` means something else under this branch, and two
         different things within it: see `/signals/{signalId}`.
