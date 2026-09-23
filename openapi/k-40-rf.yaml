@@ -150,7 +150,16 @@ paths:
   /devices/uhc/assignedTo:
     get:
       operationId: getDevicesUhcAssignedTo
-      description: Get the UHC assignment.
+      description: >-
+        Get the UHC assignment.
+
+        PROPOSAL: the enum in the schema is the vocabulary; the
+        `allowedValues` a gateway sends are what this installation permits,
+        and they differ between installations on the same firmware. Two
+        appliances offer `hc1`, a third does not. A schema-level enum has to
+        be the union, and a client has to prefer the live list -- which is
+        worth saying, because the opposite reading (the example is the list)
+        is the natural one.
       tags:
         - devices
       responses:
@@ -159,7 +168,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StringValue'
+                allOf:
+                  - $ref: '#/components/schemas/StringValue'
+                  - type: object
+                    properties:
+                      value:
+                        enum:
+                          - unassigned
+                          - hc1
+                          - hc2
+                          - hc3
+                          - hc4
+                      allowedValues:
+                        items:
+                          enum:
+                          - unassigned
+                          - hc1
+                          - hc2
+                          - hc3
+                          - hc4
               example:
                 id: /devices/uhc/assignedTo
                 writeable: 1
