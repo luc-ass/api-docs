@@ -40,9 +40,17 @@ installation. If it would help to have it pointed at other appliances — a
 cascade, a boiler, a solar system — we are collecting those diagnostics anyway
 and will gladly report what they say.
 
-It has now been run against a second appliance, a Buderus-branded Logatherm
-WLW186i-12 owned by someone else, on newer appliance firmware. It produced no
-defect the first device had not already shown: the enum and unit disagreements
-above reproduce on both, which makes them this file's rather than one machine's.
-What it did change is point 4. Its `/signals` branch is a different set — 99
-against 87 — and it is what turned up the second meaning of a `state` map.
+It has now been run against two more appliances, both owned by someone else:
+a Buderus-branded Logatherm WLW186i-12 on newer appliance firmware, and a Bosch
+Compress CS5800iAW with two heating circuits, the second mixed. Neither
+produced a defect in the static endpoints the first device had not already
+shown — every remaining disagreement is the file declaring hardware a machine
+does not have — so the enum and unit corrections reproduce on three
+independently owned appliances and are this file's rather than one machine's.
+`/heatingCircuits/{id}/mixerPosition` is now confirmed as described.
+
+What they changed is the `/signals` side. The Buderus turned up the second
+meaning of a `state` map (point 4). The CS5800iAW turned up the flags written
+as words, a module heading its own ids, the date split over three units
+(point 5), the per-installation `allowedValues` (point 2) and the one signal
+that is not JSON (point 6).
