@@ -4184,11 +4184,31 @@ paths:
         signal on the right circuit. Knowing that is the difference between a
         readable name and a raw identifier.
 
+        A module can head its own signals. A mixing module on hc2 serves
+        `HC2MOD.FlowTemp`, `HC2MOD.FlowCtrl.MixerPosition` and
+        `HC2MOD.FlowCtrl.PumpRequest` rather than anything under `SC.HC2`, so
+        the domain list is open, and a circuit can appear as the head segment
+        with a suffix. The two are not interchangeable: `SC.HC2.FlowTempSetp`
+        is what the controller asks of the circuit, `HC2MOD.FlowTemp` what the
+        module measures.
+
+        Some segments carry meaning a client needs. `Stats` marks lifetime
+        counters that only ever rise -- `SRC.CUHP.HP1.Stats.CompressorCH` in
+        s -- while `Timer` beside it counts down to zero; both arrive as the
+        same integer with the same unit.
+
         The signals are real measurements with units and enumerations, not
         debug output: compressor speed, valve positions, defrost state, frost
-        protection. One appliance served 87 of them, another 99, with 68 in
-        common: the set belongs to the machine behind the gateway rather than
-        to the gateway, so a client cannot know it in advance.
+        protection. Three appliances served 87, 99 and 120 of them, with 68
+        common to all three: the set belongs to the machine behind the gateway
+        rather than to the gateway, so a client cannot know it in advance.
+
+        Most are not measurements but flags, and they are written as words.
+        On all three appliances every `stringValue` signal reads the literal
+        `"true"` or `"false"` -- 34 of 34, 47 of 49, 52 of 53 -- except the
+        `GWEEBUS.CEM.*` identity strings. Nothing in the schema says so, so a
+        client either compares strings or keeps its own list. A boolean type,
+        or at least a `format`, would say it once.
 
         Note that `state` means something else under this branch, and two
         different things within it: see `/signals/{signalId}`.
@@ -4260,9 +4280,9 @@ paths:
         `INVALID` -- so a map may hold codes, an enumeration, or both. A client
         that reads a measurement as an enumeration looks correct while the
         system is idle, because the value sits on a label, and then reports
-        nothing at all once the circuit asks for 35 C. Of the maps two
-        appliances served, 14 and 17 were enumerations and 13 and 11 were
-        measurements. We got this wrong ourselves and shipped it.
+        nothing at all once the circuit asks for 35 C. Of the maps three
+        appliances served, 14, 17 and 23 were enumerations and 13, 11 and 15
+        measurements, and the unit told them apart on every one. We got this wrong ourselves and shipped it.
 
         PROPOSAL, a firmware defect rather than a documentation one: with EEBUS
         commissioned, `/signals/GWEEBUS.CEM.SKI` answers with the raw bytes of
